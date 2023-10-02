@@ -1,24 +1,54 @@
-# README
+# テーブル設計
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## users テーブル
 
-Things you may want to cover:
+|Column            |Type  |Options    |
+|------------------|------|-----------|
+|nickname          |string|nill: false|
+|email             |string|nill: false|
+|encrypted_password|string|nill: false|
+|last_name         |string|nill: false|
+|first_name        |string|nill: false|
+|last_name_kana    |string|nill: false|
+|first_name_kana   |string|nill: false|
+|birth_date        |date  |nill: false|
 
-* Ruby version
+### Association
 
-* System dependencies
+-has_many :items
+-has_many :orders
 
-* Configuration
+## items テーブル
+|Column                  |Type      |Options                       |
+|------------------------|----------|------------------------------|
+|item_name               |string    |nill: false                   |
+|item_info               |text      |nill: false                   |
+|item_category           |string    |nill: false                   |
+|item_sales_status       |string    |nill: false                   |
+|item_shipping_fee_status|string    |nill: false                   |
+|item_prefecture         |string    |nill: false                   |
+|item_scheduled_delivery |string    |nill: false                   |
+|item_price              |integer   |nill: false                   |
+|user                    |references|null: false, foreign_key: true|
 
-* Database creation
+### Association
 
-* Database initialization
+-belongs_to :users
+-has_one :orders
 
-* How to run the test suite
+## orders テーブル
+|Column                  |Type      |Options                       |
+|------------------------|----------|------------------------------|
+|postal_code             |string    |nill: false                   |
+|prefecture              |string    |nill: false                   |
+|city                    |string    |nill: false                   |
+|addresses               |string    |nill: false                   |
+|building                |string    |                              |
+|phone_number            |string    |nill: false                   |
+|user                    |references|null: false, foreign_key: true|
+|item                    |references|null: false, foreign_key: true|
 
-* Services (job queues, cache servers, search engines, etc.)
+### Association
 
-* Deployment instructions
-
-* ...
+-belongs_to :users
+-belongs_to :items
