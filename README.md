@@ -4,14 +4,14 @@
 
 |Column            |Type  |Options    |
 |------------------|------|-----------|
-|nickname          |string|nill: false|
-|email             |string|nill: false|
-|encrypted_password|string|nill: false|
-|last_name         |string|nill: false|
-|first_name        |string|nill: false|
-|last_name_kana    |string|nill: false|
-|first_name_kana   |string|nill: false|
-|birth_date        |date  |nill: false|
+|nickname          |string|null: false|
+|email             |string|null: false|
+|encrypted_password|string|null: false|
+|last_name         |string|null: false|
+|first_name        |string|null: false|
+|last_name_kana    |string|null: false|
+|first_name_kana   |string|null: false|
+|birth_date        |date  |null: false|
 
 ### Association
 
@@ -21,34 +21,34 @@
 ## items テーブル
 |Column                  |Type      |Options                       |
 |------------------------|----------|------------------------------|
-|item_name               |string    |nill: false                   |
-|item_info               |text      |nill: false                   |
-|item_category           |string    |nill: false                   |
-|item_sales_status       |string    |nill: false                   |
-|item_shipping_fee_status|string    |nill: false                   |
-|item_prefecture         |string    |nill: false                   |
-|item_scheduled_delivery |string    |nill: false                   |
-|item_price              |integer   |nill: false                   |
+|item_name               |string    |null: false                   |
+|item_info               |text      |null: false                   |
+|item_category           |string    |null: false                   |
+|item_sales_status       |string    |null: false                   |
+|item_shipping_fee_status|string    |null: false                   |
+|item_prefecture         |string    |null: false                   |
+|item_scheduled_delivery |string    |null: false                   |
+|item_price              |integer   |null: false                   |
 |user                    |references|null: false, foreign_key: true|
 
 ### Association
 
--belongs_to :users
--has_one :orders
+-belongs_to :user
+-has_one :order
 
 ## orders テーブル
 |Column                  |Type      |Options                       |
 |------------------------|----------|------------------------------|
-|postal_code             |string    |nill: false                   |
-|prefecture              |string    |nill: false                   |
-|city                    |string    |nill: false                   |
-|addresses               |string    |nill: false                   |
+|postal_code             |string    |null: false                   |
+|prefecture              |string    |null: false                   |
+|city                    |string    |null: false                   |
+|addresses               |string    |null: false                   |
 |building                |string    |                              |
-|phone_number            |string    |nill: false                   |
+|phone_number            |string    |null: false                   |
 |user                    |references|null: false, foreign_key: true|
 |item                    |references|null: false, foreign_key: true|
 
 ### Association
 
--belongs_to :users
--belongs_to :items
+-belongs_to :user
+-belongs_to :item
