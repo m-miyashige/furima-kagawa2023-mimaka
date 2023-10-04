@@ -5,4 +5,5 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: "items#index"
 
+  devise_for :users
 end
