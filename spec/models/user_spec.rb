@@ -53,8 +53,13 @@ require 'rails_helper'
         @user.valid?
         expect(@user.errors.full_messages).to include("Last name can't be blank", "First name can't be blank")
       end
-      it 'last_nameとfirst_nameがそれぞれ全角（漢字・ひらがな・カタカナ）でないと保存できない' do
-
+      it 'last_name全角（漢字・ひらがな・カタカナ）でないと保存できない' do
+        @user.last_name = 'Smith' # 半角文字列
+        expect(@user).not_to be_valid
+      end
+      it 'first_name全角（漢字・ひらがな・カタカナ）でないと保存できない' do
+        @user.first_name = 'John' # 半角文字列
+        expect(@user).not_to be_valid
       end
       it 'last_name_kana 空では保存できない' do
         @user.last_name_kana = ''
