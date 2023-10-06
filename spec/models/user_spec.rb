@@ -39,7 +39,8 @@ require 'rails_helper'
         expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
       end
       it 'passwordは半角英数字混合していないと保存できない' do
-        
+        @user.password = 'password' # 英字のみ
+        expect(@user).not_to be_valid
       end
       it 'passwordとpassword（確認）が一致しないと保存できない' do
         @user.password_confirmation = 'password123' # 確認用パスワードが異なる
@@ -55,14 +56,23 @@ require 'rails_helper'
       it 'last_nameとfirst_nameがそれぞれ全角（漢字・ひらがな・カタカナ）でないと保存できない' do
 
       end
-      it 'last_name_kana とfirst_name_kanaがそれぞれ空では保存できない' do
+      it 'last_name_kana 空では保存できない' do
         @user.last_name_kana = ''
+        @user.valid?
+        expect(@user.errors.full_messages).to include("Last name kana can't be blank")
+      end
+      it 'first_name_kana空では保存できない' do
         @user.first_name_kana = ''
         @user.valid?
-        expect(@user.errors.full_messages).to include("Last name kana can't be blank", "First name kana can't be blank")
+        expect(@user.errors.full_messages).to include("First name kana can't be blank")
       end
-      it 'last_name_kana とfirst_name_kanaがそれぞれ全角（カタカナ）でないと保存できない' do
-
+      it 'last_name_kana全角カタカナでないと保存できない' do
+        @user.last_name_kana = 'たなか' # 全角ひらがな
+        expect(@user).not_to be_valid
+      end
+      it 'first_name_kana全角カタカナでないと保存できない' do
+        @user.first_name_kana = 'たろう' # 全角ひらがな
+        expect(@user).not_to be_valid
       end
       it 'birth_date が空では保存できない' do
         @user.birth_date = ''
@@ -71,3 +81,4 @@ require 'rails_helper'
       end
     end  
   end
+  
