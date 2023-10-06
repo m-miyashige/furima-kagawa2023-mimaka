@@ -5,7 +5,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname , presence: true
           # 他のバリデーションルールも含めるか、必要に応じて追加してください
-  validates :email, presence: true, uniqueness: true
+  
           # 他のバリデーションルールも含めるか、必要に応じて追加してください
   validates :last_name, presence: true
   validates :first_name, presence: true
