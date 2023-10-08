@@ -5,8 +5,8 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
   validates :nickname, presence: true
   # パスワードの半角英数混合を検証するバリデーションを追加
-  validates :password,
-            format: { with: /\A(?=.*[a-zA-Z])(?=.*\d)/, message: 'is invalid. Include both letters and numbers' }
+  validates :password,  
+            format: { with: /\A(?=.*[a-zA-Z])(?=.*\d).+\z/, message: 'is invalid. Include both letters and numbers' }          
   validates :last_name, presence: true, format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
   validates :first_name, presence: true,
                          format: { with: /\A[ぁ-んァ-ヶ一-龥々ー]+\z/, message: 'is invalid. Input full-width characters' }
