@@ -17,3 +17,4 @@ function cal_tax_and_profit() {
 };
 
 window.addEventListener('turbo:load', cal_tax_and_profit);
+window.addEventListener('turbo:render', cal_tax_and_profit);
