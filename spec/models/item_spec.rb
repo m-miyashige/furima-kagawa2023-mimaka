@@ -5,21 +5,17 @@ RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
 
-    def generate_sentence  # @item.info用に1000文字以下の文字を作成
+    # @item.info用に1000文字以下の文字を作成
+    def generate_sentence
       sentence = Faker::Lorem.sentence
-      while sentence.length > 1000
-        sentence = Faker::Lorem.sentence
-      end
+      sentence = Faker::Lorem.sentence while sentence.length > 1000
       sentence
     end
-  
-    @item.info = generate_sentence  # 1000文字以下の文字を代入
 
+    @item.info = generate_sentence  # 1000文字以下の文字を代入
   end
 
-
   describe '商品出品' do
-
     context '出品できる場合' do
       it '全ての項目が適切に入力されていれば出品できる' do
         expect(@item).to be_valid
@@ -75,22 +71,18 @@ RSpec.describe Item, type: :model do
       it '価格が半角数字以外だと出品できない' do
         @item.price = Faker::Lorem.sentence
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is invalid. Input half-width characters")
+        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
       end
       it '価格が¥299以下だと出品できない' do
         @item.price = Faker::Number.between(to: 299)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it '価格が¥10,000,000以上だと出品できない' do
-        @item.price = Faker::Number.between(from: 10000000, to: 20000000)
+        @item.price = Faker::Number.between(from: 10_000_000, to: 20_000_000)
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
-      
     end
   end
-
 end
-
-
