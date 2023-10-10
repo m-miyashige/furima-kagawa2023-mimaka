@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   belongs_to :prefecture
   belongs_to :scheduled_delivery
 
-  validates :image, presence: true  #gem 'activestorage-validator'を導入した
+  validates :image, presence: true, blob: { content_type: :image }  #gem 'activestorage-validator'を導入した
   validates :name, presence: true
   validates :info, presence: true
   validates :price, presence: true, numericality:{ with: /\A[0-9]+\z/, message: 'is invalid. Input half-width characters' }
