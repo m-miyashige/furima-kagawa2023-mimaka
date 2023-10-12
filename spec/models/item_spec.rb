@@ -4,15 +4,6 @@ require 'faker'
 RSpec.describe Item, type: :model do
   before do
     @item = FactoryBot.build(:item)
-
-    # @item.info用に1000文字以下の文字を作成
-    def generate_sentence
-      sentence = Faker::Lorem.sentence
-      sentence = Faker::Lorem.sentence while sentence.length > 1000
-      sentence
-    end
-
-    @item.info = generate_sentence  # 1000文字以下の文字を代入
   end
 
   describe '商品出品' do
