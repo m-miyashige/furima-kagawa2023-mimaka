@@ -9,7 +9,7 @@ function cal_tax_and_profit() {
   item_price.addEventListener("keyup", ()=>{
     item_price_value = item_price.value;
     add_tax_price_value = Math.floor(item_price_value * 0.1);
-    profit_value = item_price.value - add_tax_price_value;
+    profit_value = Math.floor(item_price.value) - add_tax_price_value;
 
     add_tax_price.innerHTML = add_tax_price_value.toLocaleString();
     profit.innerHTML = profit_value.toLocaleString();
