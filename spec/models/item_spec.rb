@@ -3,8 +3,9 @@ require 'faker'
 
 RSpec.describe Item, type: :model do
   before do
-    @item = FactoryBot.create(:item)
-    sleep 0.1
+    user = FactoryBot.create(:user)
+    @item = FactoryBot.build(:item)
+    @item.user_id = user.id
   end
 
   describe '商品出品' do
