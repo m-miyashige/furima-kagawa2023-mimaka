@@ -12,7 +12,7 @@ class Item < ApplicationRecord
   validates :image, presence: true, blob: { content_type: :image }  # gem 'activestorage-validator'を導入した
   validates :name, presence: true
   validates :info, presence: true
-  validates :price, presence: true, numericality: { only_integer: true, message: 'is invalid. Input half-width characters' }
+  validates :price, presence: true, numericality: { only_integer: true, message: 'is invalid. Input integer value in half-width characters' }
   validates :price, numericality: { in: 300..9_999_999, message: 'is out of setting range' }
   validates :category_id, numericality: { other_than: 1, message: "can't be blank" }
   validates :sales_status_id, numericality: { other_than: 1, message: "can't be blank" }

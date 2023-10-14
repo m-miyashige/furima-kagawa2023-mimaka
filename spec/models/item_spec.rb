@@ -63,7 +63,12 @@ RSpec.describe Item, type: :model do
       it '価格が半角数字以外だと出品できない' do
         @item.price = Faker::Lorem.sentence
         @item.valid?
-        expect(@item.errors.full_messages).to include('Price is invalid. Input half-width characters')
+        expect(@item.errors.full_messages).to include('Price is invalid. Input integer value in half-width characters')
+      end
+      it '価格が小数値だと出品できない' do
+        @item.price = Faker::Number.decimal(l_digits: 4, r_digits: 1)
+        @item.valid?
+        expect(@item.errors.full_messages).to include('Price is invalid. Input integer value in half-width characters')
       end
       it '価格が¥299以下だと出品できない' do
         @item.price = Faker::Number.between(to: 299)
