@@ -8,7 +8,7 @@ class Item < ApplicationRecord
   belongs_to :shipping_fee_status
   belongs_to :prefecture
   belongs_to :scheduled_delivery
-
+ 
   validates :image, presence: true, blob: { content_type: :image }  # gem 'activestorage-validator'を導入した
   validates :name, presence: true
   validates :info, presence: true
