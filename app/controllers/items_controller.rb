@@ -30,11 +30,16 @@ class ItemsController < ApplicationController
   def update
     @item = Item.find(params[:id])
 
+    
+    if params[:item][:image].present?
+        @item.image.attach(params[:item][:image])
+    end
+
     if @item.update(item_params)
 
       redirect_to @item, notice: '商品情報を更新しました。'
     else
-      
+
       render :edit
     end
       
