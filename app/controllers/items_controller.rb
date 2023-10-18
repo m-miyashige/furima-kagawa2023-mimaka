@@ -24,23 +24,21 @@ class ItemsController < ApplicationController
   end
   def edit
     @item = Item.find(params[:id])
-  render :edit
+    if @item.user != current_user
+      redirect_to root_path, alert: '他のユーザーのプロトタイプは編集できません。'
+    end
+    
+
   end
 
   def update
     @item = Item.find(params[:id])
-
-    
-    if params[:item][:image].present?
-        @item.image.attach(params[:item][:image])
-    end
-
     if @item.update(item_params)
 
       redirect_to @item, notice: '商品情報を更新しました。'
     else
 
-      render :edit
+      render :edit,status: :unprocessable_entity
     end
       
   end
