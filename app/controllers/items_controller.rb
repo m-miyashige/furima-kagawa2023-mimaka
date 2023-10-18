@@ -1,5 +1,5 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signin, only: :new
+  before_action :move_to_signin, only: [:new,:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -33,6 +33,7 @@ class ItemsController < ApplicationController
 
   def update
     @item = Item.find(params[:id])
+    
     if @item.update(item_params)
 
       redirect_to @item, notice: '商品情報を更新しました。'
