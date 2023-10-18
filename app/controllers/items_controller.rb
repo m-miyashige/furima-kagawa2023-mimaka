@@ -26,7 +26,7 @@ class ItemsController < ApplicationController
   def edit
     @item = Item.find(params[:id])
     if @item.user != current_user
-      redirect_to root_path, alert: '他のユーザーのプロトタイプは編集できません。'
+      redirect_to root_path
     end
   end
 
