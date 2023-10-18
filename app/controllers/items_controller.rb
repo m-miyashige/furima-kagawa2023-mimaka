@@ -22,13 +22,12 @@ class ItemsController < ApplicationController
   def show
     @item = Item.find(params[:id])
   end
+
   def edit
     @item = Item.find(params[:id])
     if @item.user != current_user
       redirect_to root_path, alert: '他のユーザーのプロトタイプは編集できません。'
     end
-    
-
   end
 
   def update
@@ -41,8 +40,8 @@ class ItemsController < ApplicationController
 
       render :edit,status: :unprocessable_entity
     end
-      
   end
+  
   private
 
   def item_params
