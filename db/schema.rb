@@ -55,7 +55,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_15_122349) do
   end
 
   create_table "orders", charset: "utf8", force: :cascade do |t|
-    t.integer "price", null: false
     t.bigint "user_id", null: false
     t.bigint "item_id", null: false
     t.datetime "created_at", null: false
