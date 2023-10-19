@@ -1,6 +1,6 @@
 class ItemsController < ApplicationController
   before_action :move_to_signin, only: [:new, :edit]
-  before_action :set_item, only: [:edit, :update]
+  before_action :set_item, only: [:edit, :update,:show]
   def index
     @items = Item.order('created_at DESC')
   end
@@ -17,10 +17,6 @@ class ItemsController < ApplicationController
     else
       render :new, status: :unprocessable_entity
     end
-  end
-
-  def show
-    @item = Item.find(params[:id])
   end
 
   def edit
