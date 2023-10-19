@@ -95,3 +95,5 @@ gem 'activestorage-validator'
 gem 'pry-rails'
 
 gem 'gon'
+
+gem 'payjp'
