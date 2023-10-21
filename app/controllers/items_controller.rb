@@ -1,5 +1,7 @@
 class ItemsController < ApplicationController
-  before_action :move_to_signin, only: :new
+  before_action :set_item, only: [:edit, :update, :show]
+  before_action :move_to_signin, only: [:new, :edit]
+  before_action :move_to_root, only: [:edit]
 
   def index
     @items = Item.order('created_at DESC')
@@ -19,10 +21,28 @@ class ItemsController < ApplicationController
     end
   end
 
-  def show
-    @item = Item.find(params[:id])
+  def edit
+    return unless @item.user != current_user
+
+    redirect_to root_path
   end
-  
+
+  def update
+    if @item.update(item_params)
+      redirect_to item_path(@item), notice: '商品情報を更新しました。'
+    else
+      render :edit, status: :unprocessable_entity
+    end
+  end
+
+  def destroy
+    item = Item.find(params[:id])
+    if current_user.id == item.user_id
+      item.destroy
+    end
+    redirect_to root_path
+  end
+
   private
 
   def item_params
@@ -36,4 +56,15 @@ class ItemsController < ApplicationController
     flash[:notice] = 'You need to sign in or sign up before continuing.'
     redirect_to user_session_path
   end
+
+  def set_item
+    @item = Item.find(params[:id])
+  end
+
+  def move_to_root
+    unless @item.order.nil?
+      redirect_to root_path
+    end
+  end
+
 end

@@ -16,7 +16,6 @@ class OrdersController < ApplicationController
       gon.public_key = ENV["PAYJP_PUBLIC_KEY"]
       render :index, status: :unprocessable_entity
     end
-
   end
 
   private
@@ -38,14 +37,15 @@ class OrdersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
+#  def move_to_root
+#    return if user_signed_in?
+#|| @item.user_id == current_user.id || !@item.order.nil?
+#      redirect_to root_path
+#    end
+#  end
+
   def move_to_root
-    unless user_signed_in?    # ログインしていないとトップページへ戻る
-      redirect_to root_path
-    end
-    if @item.user_id == current_user.id    #自身が出品した商品の場合トップページへ戻る
-      redirect_to root_path
-    end
-    unless @item.order.nil?    #販売済みの商品の場合トップページへ戻る
+    if !user_signed_in? || @item.user_id == current_user.id || !@item.order.nil?
       redirect_to root_path
     end
   end
