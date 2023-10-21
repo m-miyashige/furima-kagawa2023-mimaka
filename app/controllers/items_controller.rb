@@ -37,9 +37,7 @@ class ItemsController < ApplicationController
 
   def destroy
     item = Item.find(params[:id])
-    if current_user.id == item.user_id
-      item.destroy
-    end
+    item.destroy if current_user.id == item.user_id
     redirect_to root_path
   end
 
@@ -62,9 +60,8 @@ class ItemsController < ApplicationController
   end
 
   def move_to_root
-    unless @item.order.nil?
-      redirect_to root_path
-    end
-  end
+    return if @item.order.nil?
 
+    redirect_to root_path
+  end
 end

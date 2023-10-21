@@ -33,12 +33,12 @@ RSpec.describe OrderShipping, type: :model do
       it '郵便番号が「3桁ハイフン4桁」でないと購入できない' do
         @order_shipping.postal_code = '1234567'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_shipping.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it '郵便番号が半角数値でないと購入できない' do
         @order_shipping.postal_code = '１２３−４５６７'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Postal code is invalid. Enter it as follows (e.g. 123-4567)")
+        expect(@order_shipping.errors.full_messages).to include('Postal code is invalid. Enter it as follows (e.g. 123-4567)')
       end
       it '都道府県がないと購入できない' do
         @order_shipping.prefecture_id = ''
@@ -63,12 +63,12 @@ RSpec.describe OrderShipping, type: :model do
       it '電話番号が10桁以上11桁以内でないと購入できない' do
         @order_shipping.phone_number = '1234567'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Phone number is too short")
+        expect(@order_shipping.errors.full_messages).to include('Phone number is too short')
       end
       it '電話番号が半角数値でないと購入できない' do
         @order_shipping.phone_number = '１２３４５６７８９０'
         @order_shipping.valid?
-        expect(@order_shipping.errors.full_messages).to include("Phone number is invalid. Input only number")
+        expect(@order_shipping.errors.full_messages).to include('Phone number is invalid. Input only number')
       end
       it 'userが紐付いていなければ購入できない' do
         @order_shipping.user_id = nil
