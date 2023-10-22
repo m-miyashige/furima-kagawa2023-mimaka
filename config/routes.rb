@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   # root "articles#index"
   root to: "items#index"
   devise_for :users
-  resources :items, only: [:new, :create, :show, :edit, :update] do
+  resources :items do
     resources :orders, only:[:create, :index]
   end
 end
