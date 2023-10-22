@@ -60,7 +60,12 @@ RSpec.describe OrderShipping, type: :model do
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include("Phone number can't be blank")
       end
-      it '電話番号が10桁以上11桁以内でないと購入できない' do
+      it '電話番号が12桁以上では購入できない' do
+        @order_shipping.phone_number = '1234567890123'
+        @order_shipping.valid?
+        expect(@order_shipping.errors.full_messages).to include('Phone number is too short')
+      end
+      it '電話番号が9桁以下では購入できない' do
         @order_shipping.phone_number = '1234567'
         @order_shipping.valid?
         expect(@order_shipping.errors.full_messages).to include('Phone number is too short')
