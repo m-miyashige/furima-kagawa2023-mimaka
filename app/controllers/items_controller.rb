@@ -1,6 +1,7 @@
 class ItemsController < ApplicationController
+  before_action :set_item, only: [:edit, :update, :show]
   before_action :move_to_signin, only: [:new, :edit]
-  before_action :set_item, only: [:edit, :update,:show]
+  before_action :move_to_root, only: [:edit]
   def index
     @items = Item.order('created_at DESC')
   end
@@ -57,5 +58,10 @@ class ItemsController < ApplicationController
 
   def set_item
     @item = Item.find(params[:id])
+  end
+  def move_to_root
+    return if @item.order.nil?
+
+    redirect_to root_path
   end
 end
