@@ -11,6 +11,12 @@ document.addEventListener('turbo:load', function () {
   // input要素を取得
   const fileField = document.querySelector('input[type="file"][name="item[image]"]');
   fileField.addEventListener('change', function (e) {
+    // 古いプレビューが存在する場合は削除
+    const alreadyPreview = document.querySelector('.preview-image');
+    if (alreadyPreview) {
+      alreadyPreview.remove();
+    };
+
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
 
