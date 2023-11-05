@@ -1,4 +1,4 @@
-document.addEventListener('turbo:load', function () {
+function display_preview() {
   // 商品出品ページのフォームを取得
   const newItemForm = document.getElementsByClassName('items-sell-contents');
 
@@ -17,6 +17,13 @@ document.addEventListener('turbo:load', function () {
       alreadyPreview.remove();
     };
 
+    const preview = document.querySelector('#preview');
+    const textContentPreview = preview.textContent;
+    if (textContentPreview) {
+      preview.textContent = '';
+    };
+
+
     const file = e.target.files[0];
     const blob = window.URL.createObjectURL(file);
 
@@ -26,5 +33,7 @@ document.addEventListener('turbo:load', function () {
     previewList.appendChild(previewImage);
   });
 
+};
 
-});
+window.addEventListener('turbo:load', display_preview);
+window.addEventListener('turbo:render', display_preview);
