@@ -2,6 +2,7 @@ class Item < ApplicationRecord
   belongs_to :user
   has_one :order
   has_one_attached :image, dependent: :destroy
+  has_many_attached :images_sub, dependent: :destroy
 
   extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :category
@@ -11,6 +12,7 @@ class Item < ApplicationRecord
   belongs_to :scheduled_delivery
 
   validates :image, presence: true, blob: { content_type: :image }  # gem 'activestorage-validator'を導入した
+  validates :images_sub, length: { maximum: 5, message: "は5枚以下にして下さい" }
   validates :name, presence: true
   validates :info, presence: true
   validates :price, presence: true,
