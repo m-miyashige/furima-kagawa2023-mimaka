@@ -33,6 +33,25 @@
   object-fit: contain;
 }
 
+.item-img-sub-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+  height: 50vh;
+}
+
+.item-img-sub {
+  /* display: block; */
+  width: 12vw;
+  /* height: 50vh; */
+  /* width: 60vw; */
+  /* min-height: 500px; */
+  background-color: rgb(205, 202, 202);
+  object-fit: contain;
+}
+
+
+
 .item-price-box {
   margin: 25px 0px;
   display: flex;
