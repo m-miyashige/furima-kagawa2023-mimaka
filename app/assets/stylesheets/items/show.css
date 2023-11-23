@@ -33,6 +33,24 @@
   object-fit: contain;
 }
 
+.item-img-sub-wrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 60vw;
+}
+
+.item-img-sub-wrapper > div {
+  flex: 1;
+  margin: 10px;
+  background-color: rgb(205, 202, 202);
+  display: flex;
+  align-items: center;
+}
+
+.item-img-sub {
+  width: 100%;
+}
+
 .item-price-box {
   margin: 25px 0px;
   display: flex;
