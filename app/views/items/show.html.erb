@@ -15,15 +15,15 @@
           </div>
       <% end %> 
 
-      <div class="item-img-sub-wrapper">
       <% if @item.images_sub[0] != nil %>
-        <% @item.images_sub[0..-1].each do |image| %>
-          
-            <%= image_tag image ,class:"item-img-sub" %>
-          
-        <% end %>
+        <div class="item-img-sub-wrapper">
+          <% @item.images_sub[0..-1].each do |image| %>
+          <div>
+            <%= image_tag image ,class:"item-img-sub" %>  
+          </div>
+          <% end %>
+        </div>
       <% end %>
-      </div>
 
     </div>
 

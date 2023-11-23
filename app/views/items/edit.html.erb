@@ -9,20 +9,48 @@ app/assets/stylesheets/items/new.css %>
     <h2 class="items-sell-title">商品の情報を入力</h2>
     <%= form_with model: @item, local: true do |f| %>
     <%= render 'shared/error_messages', model: f.object %>
+    
     <%# 商品画像 %>
     <div class="img-upload">
-      <div class="weight-bold-text">
-        商品画像
-        <span class="indispensable">必須</span>
+      <div>
+        <div class="weight-bold-text">
+          商品画像　メイン
+          <span class="indispensable">必須</span>
+        </div>
+        <div class="click-upload">
+          <p>
+            クリックしてファイルをアップロード
+          </p>
+          <%= f.file_field :image %>
+        </div>
       </div>
-      <div class="click-upload">
-        <p>
-          クリックしてファイルをアップロード
-        </p>
-        <%= f.file_field :image, id:"item-image" %>
+      <div id="preview-main">
+        プレビュー
+      </div>
+    </div>
+
+    <div id="img-upload-sub">
+      <div class="img-upload" data-index="0">
+        <div>
+          <div class="weight-bold-text">
+            商品画像　サブ
+            <span class="form-any">任意</span>
+          </div>
+          <div class="click-upload">
+            <p>
+              クリックしてファイルをアップロード<br>
+              （5枚まで）
+            </p>
+            <%= f.file_field :images_sub, name: 'item[images_sub][]', data: {index: 0} %>
+          </div>
+        </div>
+        <div class="preview-sub" data-index="0">
+          プレビュー
+        </div>
       </div>
     </div>
     <%# /商品画像 %>
+    
     <%# 商品名と商品説明 %>
     <div class="new-items">
       <div class="weight-bold-text">
